@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
 
+  private final ClimberIO climberIO;
+
   private static Climber instance;
 
-  public static Climber initialize() {
+  public static Climber initialize(ClimberIO climberIO) {
     if (instance == null) {
-      instance = new Climber();
+      instance = new Climber(climberIO);
     }
     return instance;
   }
@@ -22,8 +24,11 @@ public class Climber extends SubsystemBase {
   }
 
   /** Creates a new Climber. */
-  public Climber() {}
+  public Climber(ClimberIO climberIO) {
+    this.climberIO = climberIO;
+  }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+  }
 }

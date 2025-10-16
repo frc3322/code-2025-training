@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pivot extends SubsystemBase {
 
+  private final PivotIO pivotIO;
+
   private static Pivot instance;
 
-  public static Pivot initialize() {
+  public static Pivot initialize(PivotIO pivotIO) {
     if (instance == null) {
-      instance = new Pivot();
+      instance = new Pivot(pivotIO);
     }
     return instance;
   }
@@ -22,7 +24,9 @@ public class Pivot extends SubsystemBase {
   }
 
   /** Creates a new Pivot. */
-  public Pivot() {}
+  public Pivot(PivotIO pivotIO) {
+    this.pivotIO = pivotIO;
+  }
 
   @Override
   public void periodic() {}

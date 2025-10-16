@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Elevator extends SubsystemBase {
 
+    private final ElevatorIO elevatorIO;
+
     public static int trackState;
 
     public static void setTrackState(int state) {
@@ -18,9 +20,9 @@ public class Elevator extends SubsystemBase {
 
     private static Elevator instance;
 
-    public static Elevator initialize() {
+    public static Elevator initialize(ElevatorIO elevatorIO) {
         if (instance == null) {
-            instance = new Elevator();
+            instance = new Elevator(elevatorIO);
         }
         return instance;
     }
@@ -30,7 +32,8 @@ public class Elevator extends SubsystemBase {
     }
 
     /** Creates a new Elevator. */
-    public Elevator() {
+    public Elevator(ElevatorIO elevatorIO) {
+        this.elevatorIO = elevatorIO;
     }
 
   @Override
