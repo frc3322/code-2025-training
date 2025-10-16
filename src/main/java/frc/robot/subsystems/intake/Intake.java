@@ -5,7 +5,8 @@
 package frc.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.subsystems.intake.IntakeConstants;
+import com.revrobotics.spark.SparkMax;
 public class Intake extends SubsystemBase {
 
   private static Intake instance;
@@ -13,6 +14,7 @@ public class Intake extends SubsystemBase {
   public static Intake initialize() {
     if (instance == null) {
       instance = new Intake();
+      
     }
     return instance;
   }
