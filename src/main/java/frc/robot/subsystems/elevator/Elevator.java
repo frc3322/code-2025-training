@@ -4,26 +4,63 @@
 
 package frc.robot.subsystems.elevator;
 
+import java.lang.invoke.VarHandle;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Elevator extends SubsystemBase {
 
-  private static Elevator instance;
+    private final ElevatorIO elevatorIO;
 
-  public static Elevator initialize() {
-    if (instance == null) {
-      instance = new Elevator();
+    public static int trackState;
+
+    public static void setTrackState(int state) {
+        trackState = state;
     }
-    return instance;
-  }
 
-  public static Elevator getInstance() {
-    return instance;
-  }
+    private static Elevator instance;
 
-  /** Creates a new Elevator. */
-  public Elevator() {}
+    public static Elevator initialize(ElevatorIO elevatorIO) {
+        if (instance == null) {
+            instance = new Elevator(elevatorIO);
+        }
+        return instance;
+    }
+
+    public static Elevator getInstance() {
+        return instance;
+    }
+
+    /** Creates a new Elevator. */
+    public Elevator(ElevatorIO elevatorIO) {
+        this.elevatorIO = elevatorIO;
+    }
 
   @Override
-  public void periodic() {}
-}
+  public void periodic() {
+    // States that each number of trackState sends the robot to a different position
+    if (trackState == 1) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.l1Position);
+    }
+    if (trackState == 2) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.l2Position);
+    }
+    if (trackState == 3) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.l3Position);  
+    }
+    if (trackState == 4) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.l4Position);  
+    }
+    if (trackState == 5) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.groundPosition);  
+    }
+    if (trackState == 6) 
+    {
+        elevatorIO.setPosition(ElevatorConstants.ElevatorSetpoints.sourcePosition);  
+    }
+  }

@@ -9,12 +9,13 @@ import frc.robot.subsystems.intake.IntakeConstants;
 import com.revrobotics.spark.SparkMax;
 public class Intake extends SubsystemBase {
 
+  private final IntakeIO intakeIO;
+
   private static Intake instance;
 
-  public static Intake initialize() {
+  public static Intake initialize(IntakeIO intakeIO) {
     if (instance == null) {
-      instance = new Intake();
-      
+      instance = new Intake(intakeIO);
     }
     return instance;
   }
@@ -24,7 +25,9 @@ public class Intake extends SubsystemBase {
   }
 
   /** Creates a new Intake. */
-  public Intake() {}
+  public Intake(IntakeIO intakeIO) {
+    this.intakeIO = intakeIO;
+  }
 
   @Override
   public void periodic() {}

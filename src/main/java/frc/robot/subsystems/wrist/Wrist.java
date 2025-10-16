@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Wrist extends SubsystemBase {
 
+  private final WristIO wristIO;
+
   private static Wrist instance;
 
-  public static Wrist initialize() {
+  public static Wrist initialize(WristIO wristIO) {
     if (instance == null) {
-      instance = new Wrist();
+      instance = new Wrist(wristIO);
     }
     return instance;
   }
@@ -22,7 +24,9 @@ public class Wrist extends SubsystemBase {
   }
 
   /** Creates a new Wrist. */
-  public Wrist() {}
+  public Wrist(WristIO wristIO) {
+    this.wristIO = wristIO;
+  }
 
   @Override
   public void periodic() {}
